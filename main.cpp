@@ -1,29 +1,34 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
+void convert_to_binary(int n){
+    vector<int> binary_number;
+    while (n > 0){
+        binary_number.push_back(n % 2);
+        n = n / 2;
+    }
+    for (int i = binary_number.size() - 1; i >= 0; i--){
+        cout << binary_number[i];
+    }
+    cout << endl;
+}
+
 
 int main(){
     int n;
-    int Xmax = -1000000, Ymin = 1000000, Zmax = -1000000;
     
     cin >> n;
-    for (int i = 0; i < n; ++i) {
-        int x, y, z;
-        cin >> x >> y >> z;
-        if (x > Xmax) {
-            Xmax = x;
-            Ymin = y;
-            Zmax = z;
-        }
-        if (x == Xmax) {
-            if (y < Ymin) {
-                Ymin = y;
-                Zmax = z;
-            }
-            if (y == Ymin && z > Zmax) {
-                Zmax = z;
-            }
-        }
+    int dorayaki[n];
+    int dorayaki_binary_number[n];
+    for(int i = 0; i < n; i++){
+        cin >> dorayaki[i];
     }
-    cout << Xmax << " " << Ymin << " " << Zmax << endl;
+    
+    
+    for (int i = 0; i < n; i++){
+        convert_to_binary(dorayaki[i]);
+    }
+
     return 0;
 }
