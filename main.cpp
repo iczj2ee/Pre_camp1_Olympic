@@ -2,19 +2,18 @@
 using namespace std;
 
 int main() {
-    int lineNum;
-    int Denominator;
-    string contents = "", contentBuffer;
-    cin >> lineNum >> Denominator;
-    for (int lineCount = 0; lineCount < lineNum; ++lineCount) {
-        cin >> contentBuffer;
-        contents += contentBuffer;
+    int stringLength;
+    string feildType = "";
+    int numberOfTypeToChangeWheel = 0;
+    cin >> stringLength;
+    cin >> feildType;
+    if (feildType.length() != stringLength) {
+        return -1;
     }
-    for (int i = 1; i <= contents.length(); ++i) {
-        if (i % Denominator == 0){
-            cout << contents[i - 1];
-        }
+    for (int index = 0; index < stringLength; index++) {
+        if (index != 0 && feildType[index] != feildType[index - 1])
+            numberOfTypeToChangeWheel++;
     }
-    cout << endl;
+    cout << numberOfTypeToChangeWheel << endl;
     return 0;
 }
