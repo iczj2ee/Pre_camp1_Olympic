@@ -2,18 +2,23 @@
 using namespace std;
 
 int main() {
-    int stringLength;
-    string feildType = "";
-    int numberOfTypeToChangeWheel = 0;
-    cin >> stringLength;
-    cin >> feildType;
-    if (feildType.length() != stringLength) {
-        return -1;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int number;
+        cin >> number;
+        if (number == 0) {
+            cout << "0" << endl;
+            continue;
+        }
+        else {
+            string binary_number = "";
+            while (number > 0){
+                binary_number = to_string(number % 2) + binary_number;
+                number /= 2;
+            }
+            cout << binary_number << endl;
+        }
     }
-    for (int index = 0; index < stringLength; index++) {
-        if (index != 0 && feildType[index] != feildType[index - 1])
-            numberOfTypeToChangeWheel++;
-    }
-    cout << numberOfTypeToChangeWheel << endl;
     return 0;
 }
