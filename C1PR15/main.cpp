@@ -3,21 +3,29 @@ using namespace std;
 
 int main() {
     string type;
-    int max_size;
+    long long max_size;
     cin >> type >> max_size;
     int mod = 1000000007;
     long long weight = 0;
-    if (type == "row"){
-        weight = (((max_size * (max_size + 1) % mod)) / 2) % mod;
+    if (type == "row") {
+        // 12 * n * (n+1)
+        weight = (12LL * max_size) % mod;
+        weight = (weight * (max_size + 1)) % mod;
     }
-
-    else if (type == "grid"){
-        weight = (((((max_size * max_size) % mod + max_size) % mod) * (((2 * max_size) % mod) + 1)) / 6) % mod;
+    else if (type == "grid") {
+        // 4 * n * (n+1) * (2n+1)
+        weight = (4LL * max_size) % mod;
+        weight = (weight * (max_size + 1)) % mod;
+        weight = (weight * (2 * max_size + 1)) % mod;
     }
-    else if (type == "block"){
-        weight = ((((max_size * (max_size + 1) % mod) / 2) % mod) * (((max_size * (max_size + 1) % mod) / 2) % mod)) % mod;
+    else if (type == "block") {
+        // 6 * (n * (n+1))^2
+        long long part = (max_size * (max_size + 1)) % mod;
+        weight = (part * part) % mod;
+        weight = (weight * 6) % mod;
     }
-    cout << (weight * 24) % mod << endl;
+    cout << weight % mod<< endl;
+    
     
 
     
