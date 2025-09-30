@@ -22,9 +22,10 @@ int main() {
 
     while (charactorHealth > 0 && bossHealth > 0){
         damageToBoss = charactorAttack - bossDefense;
-        if (damageToBoss < 0){
-            damageToBoss = 0;
-            break;
+        if (damageToBoss <= 0) {
+            cout << "Defeat\n";
+            cout << charactorName << " " << charactorHealth << " 0\n";
+            return 0;
         }
         if (damageToBoss >= bossHealth){
             damageToBoss = bossHealth;
@@ -57,6 +58,7 @@ int main() {
     else if (charactorHealth <= 0 && bossHealth > 0){
         cout << "Defeat" << endl;
     }
+
     cout << charactorName << " " << charactorHealth << " " << damageAllToBoss << endl;
     return 0;
 }
