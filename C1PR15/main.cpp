@@ -14,15 +14,13 @@ int main() {
 
     long long weight = 0;
 
-    for (int i = 1; i <= max_size; i++){
+    for (long long i = 1; i <= max_size; ++i) {
         long long result = i;
-        for (int j = 1; j < dimension; j++){
-            result = (result * i) % mod;
-        }
+        if (dimension >= 2) result = (i * i) % mod;   // i^2
+        if (dimension >= 3) result = (i * i * i) % mod;   // i^3
         weight = (weight + result) % mod;
     }
-    long long total_weight = (weight * 24) % mod;
-    cout << total_weight << endl;
+    cout << ( weight * 24 ) % mod << endl;
 
     return 0;
 }
