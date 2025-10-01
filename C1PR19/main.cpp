@@ -47,7 +47,7 @@ int main() {
 
     // if no discount, vat 100% (110% total)
     if (!hasDiscount) { 
-        totalPriceDouble *= 2; 
+        totalPriceDouble *= 2.0; 
     }
 
     if (totalPriceDouble > 10000000) {
