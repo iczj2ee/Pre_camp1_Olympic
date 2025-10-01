@@ -13,8 +13,6 @@ int main() {
     int priceDFKG[5] = {0}; // D, F, K, G, O
     for (int i = 0; i < numberOfGoods; i++){
         cin >> typeOfGoods[i] >> price[i];
-    }
-    for (int i = 0; i < numberOfGoods; i++){
         switch(typeOfGoods[i]){
             case 'D':
                 priceDFKG[0] += price[i];
@@ -33,6 +31,7 @@ int main() {
                 break;
         }
     }
+
     string letters = "DFKGO";
     int totalPriceNotDiscount = 0;
     bool hasDiscount = false;
