@@ -77,7 +77,7 @@ double discountCalculator(char typeOfGoods, int price){
     int sumOfOtherDifits = 0;
     int sumOfEvenDigits = 0;
     int sumOfOddDigits = 0;
-    int productOfAllDigits = 1;
+    long long productOfAllDigits = 1;
     int sumOfAllDigits = 0;
     int halfOfSum = 0;
     switch(typeOfGoods){
@@ -136,6 +136,7 @@ double discountCalculator(char typeOfGoods, int price){
             break;
         default:
             discount = 0;
+            break;
     }
     return price - discount;
 }
