@@ -75,8 +75,6 @@ int discountCalculator(char typeOfGoods, int price){
     int sumOfOddDigits = 0;
     int productOfAllDigits = 1;
     int sumOfAllDigits = 0;
-    int powOfProduct = 1;
-    int powOfSum = 1;
     int halfOfSum = 0;
     switch(typeOfGoods){
         case 'D':
@@ -91,33 +89,20 @@ int discountCalculator(char typeOfGoods, int price){
             }
             break;
         case 'F':
-            for (int i = 1; i < priceString.length(); i++){
-                if (i % 2 == 0){
-                    sumOfEvenDigits += (priceString[i - 1] - '0');
-                }
-                else {
-                    sumOfOddDigits += (priceString[i - 1] - '0');
-                }
+            for (int i = 0; i < priceString.length(); i++){
+                if ((i+1) % 2 == 1) sumOfOddDigits += (priceString[i]-'0');  // หลักคี่
+                else sumOfEvenDigits += (priceString[i]-'0');                // หลักคู่
             }
-            if (sumOfOddDigits > sumOfEvenDigits){
-                discount = price * 0.2;
-            }
-            else {
-                discount = price * 0.1;
-            }
+            if (sumOfOddDigits > sumOfEvenDigits) discount = price*0.2;
+            else if (sumOfOddDigits < sumOfEvenDigits) discount = price*0.1;
+            else discount = 0;
             break;
         case 'K':
             for (int i = 0; i < priceString.length(); i++){
                 productOfAllDigits *= (priceString[i] - '0');
                 sumOfAllDigits += (priceString[i] - '0');
             }
-            for (int i = 0; i < productOfAllDigits; i++){
-                powOfProduct *= 2;
-            }
-            for (int i = 0; i < sumOfAllDigits; i++){
-                powOfSum *= 4;
-            }
-            if (powOfProduct > powOfSum){
+            if (productOfAllDigits > 2*sumOfAllDigits){
                 discount = price * 0.2;
             }
             else {
@@ -129,17 +114,13 @@ int discountCalculator(char typeOfGoods, int price){
                 productOfAllDigits *= (priceString[i] - '0');
                 sumOfAllDigits += (priceString[i] - '0');
             }
-            if(sumOfAllDigits == 0){
-                discount = 0;
-            }
-            else if (sumOfAllDigits != 0){
-                halfOfSum = sumOfAllDigits / 2;
-                if ((productOfAllDigits % sumOfAllDigits) > halfOfSum){
-                    discount = price * 0.2;
-                }
-                else if ((productOfAllDigits % sumOfAllDigits) < halfOfSum){
-                    discount = price * 0.1;
-                }
+            if (sumOfAllDigits == 0) discount = 0;
+            else {
+                int half = sumOfAllDigits / 2;
+                int mod = productOfAllDigits % sumOfAllDigits;
+                if (mod > half) discount = price * 0.2;
+                else if (mod < half) discount = price * 0.1;
+                else discount = 0;  // เท่ากัน → ไม่มีส่วนลด
             }
 
             break;
