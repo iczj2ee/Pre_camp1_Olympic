@@ -34,25 +34,30 @@ int main() {
         }
     }
     string letters = "DFKGO";
-    int totalPriceNotDiscout = 0;
-    for (int i = 0; i < 5; i++){
-        totalPriceNotDiscout += priceDFKG[i];
-        totalPrice += discountCalculator(letters[i], priceDFKG[i]);
-    }
-    double vat = (double)totalPrice * 0.05;
-    double totalPriceDouble = (double)totalPrice + vat;
-    if (totalPrice == totalPriceNotDiscout){
-        totalPriceDouble *= 2;
+    int totalPriceNotDiscount = 0;
+    bool hasDiscount = false;
+
+    for (int i = 0; i < 5; i++) {
+        totalPriceNotDiscount += priceDFKG[i];
+        int discounted = discountCalculator(letters[i], priceDFKG[i]);
+        if (discounted != priceDFKG[i]) hasDiscount = true;
+        totalPrice += discounted;
     }
 
-    if (totalPriceDouble > 10000000){
+    double vat = totalPrice * 0.05;
+    double totalPriceDouble = totalPrice + vat;
+
+    if (!hasDiscount) { 
+        totalPriceDouble *= 2; 
+    }
+
+    if (totalPriceDouble > 10000000) {
         cout << "too expensive!" << endl;
     }
-    else if (totalPriceDouble < 1000){
+    else if (totalPriceDouble < 1000) {
         cout << "love so poor, go buy more" << endl;
-
     }
-    else{
+    else {
         cout << fixed << setprecision(2) << totalPriceDouble << endl;
     }
     
@@ -102,11 +107,16 @@ int discountCalculator(char typeOfGoods, int price){
                 productOfAllDigits *= (priceString[i] - '0');
                 sumOfAllDigits += (priceString[i] - '0');
             }
-            if (productOfAllDigits > 2*sumOfAllDigits){
-                discount = price * 0.2;
-            }
-            else {
+            if (productOfAllDigits == 0 && sumOfAllDigits == 0) {
                 discount = price * 0.1;
+            } else {
+                if (productOfAllDigits > 2 * sumOfAllDigits) {
+                    discount = price * 0.2;
+                } 
+                else if (productOfAllDigits < 2 * sumOfAllDigits){
+                    discount = price * 0.1;
+                }
+                else discount = 0;
             }
             break;
         case 'G':
