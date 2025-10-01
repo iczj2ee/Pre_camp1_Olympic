@@ -40,7 +40,7 @@ int main() {
     for (int i = 0; i < 5; i++) {
         totalPriceNotDiscount += priceDFKG[i];
         int discounted = discountCalculator(letters[i], priceDFKG[i]);
-        if (discounted != priceDFKG[i]) hasDiscount = true;
+        if (discounted < priceDFKG[i]) hasDiscount = true;
         totalPrice += discounted;
     }
 
@@ -108,8 +108,9 @@ int discountCalculator(char typeOfGoods, int price){
                 sumOfAllDigits += (priceString[i] - '0');
             }
             if (productOfAllDigits == 0 && sumOfAllDigits == 0) {
-                discount = price * 0.1;
-            } else {
+                discount = 0;
+            } 
+            else {
                 if (productOfAllDigits > 2 * sumOfAllDigits) {
                     discount = price * 0.2;
                 } 
