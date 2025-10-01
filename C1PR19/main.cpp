@@ -95,8 +95,8 @@ int discountCalculator(char typeOfGoods, int price){
             break;
         case 'F':
             for (int i = 0; i < priceString.length(); i++){
-                if ((i+1) % 2 == 1) sumOfOddDigits += (priceString[i]-'0');  // หลักคี่
-                else sumOfEvenDigits += (priceString[i]-'0');                // หลักคู่
+                if ((i+1) % 2 == 1) sumOfOddDigits += (priceString[i]-'0');
+                else sumOfEvenDigits += (priceString[i]-'0');
             }
             if (sumOfOddDigits > sumOfEvenDigits) discount = price*0.2;
             else if (sumOfOddDigits < sumOfEvenDigits) discount = price*0.1;
@@ -130,7 +130,7 @@ int discountCalculator(char typeOfGoods, int price){
                 int mod = productOfAllDigits % sumOfAllDigits;
                 if (mod > half) discount = price * 0.2;
                 else if (mod < half) discount = price * 0.1;
-                else discount = 0;  // เท่ากัน → ไม่มีส่วนลด
+                else discount = 0;
             }
 
             break;
