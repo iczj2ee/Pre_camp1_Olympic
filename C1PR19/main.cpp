@@ -43,9 +43,9 @@ int main() {
         totalPrice += discounted;
     }
 
-    double vat = totalPrice * 0.05;
-    double totalPriceDouble = totalPrice + vat;
+    double totalPriceDouble = totalPrice * 1.05; // add VAT 5%
 
+    // if no discount, vat 100% (110% total)
     if (!hasDiscount) { 
         totalPriceDouble *= 2; 
     }
