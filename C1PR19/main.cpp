@@ -2,12 +2,12 @@
 #include <iomanip>
 using namespace std;
 
-int discountCalculator(char typeOfGoods, int price);
+double discountCalculator(char typeOfGoods, int price);
 
 int main() {
     int numberOfGoods;
     cin >> numberOfGoods;
-    int totalPrice = 0;
+    double totalPrice = 0;
     char typeOfGoods[numberOfGoods];
     int price[numberOfGoods];
     int priceDFKG[5] = {0}; // D, F, K, G, O
@@ -33,12 +33,12 @@ int main() {
     }
 
     string letters = "DFKGO";
-    int totalPriceNotDiscount = 0;
+    double totalPriceNotDiscount = 0;
     bool hasDiscount = false;
 
     for (int i = 0; i < 5; i++) {
         totalPriceNotDiscount += priceDFKG[i];
-        int discounted = discountCalculator(letters[i], priceDFKG[i]);
+        double discounted = discountCalculator(letters[i], priceDFKG[i]);
         if (discounted < priceDFKG[i]) hasDiscount = true;
         totalPrice += discounted;
     }
@@ -64,9 +64,9 @@ int main() {
     return 0;
 }
 
-int discountCalculator(char typeOfGoods, int price){
+double discountCalculator(char typeOfGoods, int price){
     string priceString = to_string(price);
-    int discount = 0;
+    double discount = 0;
 
     // Type of goods
     // D - Drink
