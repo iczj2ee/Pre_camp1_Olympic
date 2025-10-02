@@ -10,11 +10,9 @@ int main() {
     for (int i = 0; i < (int)password.length(); i++) {
         if (password[i] == 'a') {
             x = (x + 7) % MOD;
-        } 
-        else if (password[i] == 'b') {
+        } else if (password[i] == 'b') {
             x = (x * 7) % MOD;
-        } 
-        else if (password[i] == 'c') {
+        } else if (password[i] == 'c') {
             x = (x * x) % MOD;
         }
     }

@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>   // Required for using std::string
 #include <algorithm> // Required for std::reverse()
+#include <iostream>
+#include <string> // Required for using std::string
 using namespace std;
 
 int main() {
@@ -17,6 +17,6 @@ int main() {
             cout << "impossible" << endl;
         }
     }
-    
+
     return 0;
 }

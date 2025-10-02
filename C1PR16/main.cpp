@@ -15,7 +15,6 @@ int main() {
             if (count > 1) {
                 break;
             }
-
         }
         if (count <= 1) {
             cout << "yes" << endl;
@@ -23,6 +22,6 @@ int main() {
             cout << "no" << endl;
         }
     }
-    
+
     return 0;
 }

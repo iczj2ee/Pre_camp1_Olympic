@@ -1,5 +1,5 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 using namespace std;
 
 double discountCalculator(char typeOfGoods, int price);
@@ -11,24 +11,24 @@ int main() {
     char typeOfGoods[numberOfGoods];
     int price[numberOfGoods];
     int priceDFKG[5] = {0}; // D, F, K, G, O
-    for (int i = 0; i < numberOfGoods; i++){
+    for (int i = 0; i < numberOfGoods; i++) {
         cin >> typeOfGoods[i] >> price[i];
-        switch(typeOfGoods[i]){
-            case 'D':
-                priceDFKG[0] += price[i];
-                break;
-            case 'F':
-                priceDFKG[1] += price[i];
-                break;
-            case 'K':
-                priceDFKG[2] += price[i];
-                break;
-            case 'G':
-                priceDFKG[3] += price[i];
-                break;
-            default:
-                priceDFKG[4] += price[i];   
-                break;
+        switch (typeOfGoods[i]) {
+        case 'D':
+            priceDFKG[0] += price[i];
+            break;
+        case 'F':
+            priceDFKG[1] += price[i];
+            break;
+        case 'K':
+            priceDFKG[2] += price[i];
+            break;
+        case 'G':
+            priceDFKG[3] += price[i];
+            break;
+        default:
+            priceDFKG[4] += price[i];
+            break;
         }
     }
 
@@ -39,32 +39,30 @@ int main() {
     for (int i = 0; i < 5; i++) {
         totalPriceNotDiscount += priceDFKG[i];
         double discounted = discountCalculator(letters[i], priceDFKG[i]);
-        if (discounted < priceDFKG[i]) hasDiscount = true;
+        if (discounted < priceDFKG[i])
+            hasDiscount = true;
         totalPrice += discounted;
     }
 
     double totalPriceDouble = totalPrice * 1.05; // add VAT 5%
 
     // if no discount, vat 100% (110% total)
-    if (!hasDiscount) { 
-        totalPriceDouble *= 2.0; 
+    if (!hasDiscount) {
+        totalPriceDouble *= 2.0;
     }
 
     if (totalPriceDouble > 10000000) {
         cout << "too expensive!" << endl;
-    }
-    else if (totalPriceDouble < 1000) {
+    } else if (totalPriceDouble < 1000) {
         cout << "love so poor, go buy more" << endl;
-    }
-    else {
+    } else {
         cout << fixed << setprecision(2) << totalPriceDouble << endl;
     }
-    
-    
+
     return 0;
 }
 
-double discountCalculator(char typeOfGoods, int price){
+double discountCalculator(char typeOfGoods, int price) {
     string priceString = to_string(price);
     double discount = 0;
 
@@ -80,63 +78,72 @@ double discountCalculator(char typeOfGoods, int price){
     long long productOfAllDigits = 1;
     int sumOfAllDigits = 0;
     int halfOfSum = 0;
-    switch(typeOfGoods){
-        case 'D':
-            for (int i = 1; i < priceString.length() - 1; i++){
-                sumOfOtherDifits += (priceString[i] - '0');
-            }
-            if (((priceString[0] - '0') * (priceString[priceString.length() - 1] - '0')) > sumOfOtherDifits){
-                discount = price * 0.2;
-            }
-            else if (((priceString[0] - '0') * (priceString[priceString.length() - 1] - '0')) < sumOfOtherDifits){
-                discount = price * 0.1;
-            }
-            break;
-        case 'F':
-            for (int i = 0; i < priceString.length(); i++){
-                if ((i+1) % 2 == 1) sumOfOddDigits += (priceString[i]-'0');
-                else sumOfEvenDigits += (priceString[i]-'0');
-            }
-            if (sumOfOddDigits > sumOfEvenDigits) discount = price*0.2;
-            else if (sumOfOddDigits < sumOfEvenDigits) discount = price*0.1;
-            else discount = 0;
-            break;
-        case 'K':
-            for (int i = 0; i < priceString.length(); i++){
-                productOfAllDigits *= (priceString[i] - '0');
-                sumOfAllDigits += (priceString[i] - '0');
-            }
-            if (productOfAllDigits == 0 && sumOfAllDigits == 0) {
-                discount = 0;
-            } 
-            else {
-                if (productOfAllDigits > 2 * sumOfAllDigits) {
-                    discount = price * 0.2;
-                } 
-                else if (productOfAllDigits < 2 * sumOfAllDigits){
-                    discount = price * 0.1;
-                }
-                else discount = 0;
-            }
-            break;
-        case 'G':
-            for (int i = 0; i < priceString.length(); i++){
-                productOfAllDigits *= (priceString[i] - '0');
-                sumOfAllDigits += (priceString[i] - '0');
-            }
-            if (sumOfAllDigits == 0) discount = 0;
-            else {
-                int half = sumOfAllDigits / 2;
-                int mod = productOfAllDigits % sumOfAllDigits;
-                if (mod > half) discount = price * 0.2;
-                else if (mod < half) discount = price * 0.1;
-                else discount = 0;
-            }
-
-            break;
-        default:
+    switch (typeOfGoods) {
+    case 'D':
+        for (int i = 1; i < priceString.length() - 1; i++) {
+            sumOfOtherDifits += (priceString[i] - '0');
+        }
+        if (((priceString[0] - '0') * (priceString[priceString.length() - 1] -
+                                       '0')) > sumOfOtherDifits) {
+            discount = price * 0.2;
+        } else if (((priceString[0] - '0') *
+                    (priceString[priceString.length() - 1] - '0')) <
+                   sumOfOtherDifits) {
+            discount = price * 0.1;
+        }
+        break;
+    case 'F':
+        for (int i = 0; i < priceString.length(); i++) {
+            if ((i + 1) % 2 == 1)
+                sumOfOddDigits += (priceString[i] - '0');
+            else
+                sumOfEvenDigits += (priceString[i] - '0');
+        }
+        if (sumOfOddDigits > sumOfEvenDigits)
+            discount = price * 0.2;
+        else if (sumOfOddDigits < sumOfEvenDigits)
+            discount = price * 0.1;
+        else
             discount = 0;
-            break;
+        break;
+    case 'K':
+        for (int i = 0; i < priceString.length(); i++) {
+            productOfAllDigits *= (priceString[i] - '0');
+            sumOfAllDigits += (priceString[i] - '0');
+        }
+        if (productOfAllDigits == 0 && sumOfAllDigits == 0) {
+            discount = 0;
+        } else {
+            if (productOfAllDigits > 2 * sumOfAllDigits) {
+                discount = price * 0.2;
+            } else if (productOfAllDigits < 2 * sumOfAllDigits) {
+                discount = price * 0.1;
+            } else
+                discount = 0;
+        }
+        break;
+    case 'G':
+        for (int i = 0; i < priceString.length(); i++) {
+            productOfAllDigits *= (priceString[i] - '0');
+            sumOfAllDigits += (priceString[i] - '0');
+        }
+        if (sumOfAllDigits == 0)
+            discount = 0;
+        else {
+            int half = sumOfAllDigits / 2;
+            int mod = productOfAllDigits % sumOfAllDigits;
+            if (mod > half)
+                discount = price * 0.2;
+            else if (mod < half)
+                discount = price * 0.1;
+            else
+                discount = 0;
+        }
+
+        break;
+    default:
+        discount = 0;
+        break;
     }
     return price - discount;
 }

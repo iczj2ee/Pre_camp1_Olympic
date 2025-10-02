@@ -7,7 +7,7 @@ int main() {
     int value = 0; // This variable is declared but not used
     for (int i = 1; i <= n; ++i) {
         if (n % i == 0) {
-            value ++;
+            value++;
         }
     }
     cout << value << endl;

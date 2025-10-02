@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
     int n;
     int Xmax = -1000000, Ymin = 1000000, Zmax = -1000000;
-    
+
     cin >> n;
     for (int i = 0; i < n; ++i) {
         int x, y, z;

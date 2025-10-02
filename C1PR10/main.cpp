@@ -20,45 +20,44 @@ int main() {
     cin >> charactorAttack >> characrtorDefense >> charactorHealth;
     cin >> bossAttack >> bossDefense >> bossHealth;
 
-    while (charactorHealth > 0 && bossHealth > 0){
+    while (charactorHealth > 0 && bossHealth > 0) {
         damageToBoss = charactorAttack - bossDefense;
         if (damageToBoss <= 0) {
             cout << "Defeat\n";
             cout << charactorName << " " << charactorHealth << " 0\n";
             return 0;
         }
-        if (damageToBoss >= bossHealth){
+        if (damageToBoss >= bossHealth) {
             damageToBoss = bossHealth;
         }
         bossHealth -= damageToBoss;
         damageAllToBoss += damageToBoss;
-        if (bossHealth <= 0){
+        if (bossHealth <= 0) {
             break;
         }
 
         damageToCharactor = bossAttack - characrtorDefense;
-        if (damageToCharactor < 0){
+        if (damageToCharactor < 0) {
             damageToCharactor = 0;
         }
         charactorHealth -= damageToCharactor;
-        if (charactorHealth <= 0){
+        if (charactorHealth <= 0) {
             break;
         }
-
     }
-    if (charactorHealth < 0){
+    if (charactorHealth < 0) {
         charactorHealth = 0;
     }
-    if (bossHealth < 0){
+    if (bossHealth < 0) {
         bossHealth = 0;
     }
-    if (charactorHealth > 0 && bossHealth <= 0){
+    if (charactorHealth > 0 && bossHealth <= 0) {
         cout << "Victory" << endl;
-    }
-    else if (charactorHealth <= 0 && bossHealth > 0){
+    } else if (charactorHealth <= 0 && bossHealth > 0) {
         cout << "Defeat" << endl;
     }
 
-    cout << charactorName << " " << charactorHealth << " " << damageAllToBoss << endl;
+    cout << charactorName << " " << charactorHealth << " " << damageAllToBoss
+         << endl;
     return 0;
 }

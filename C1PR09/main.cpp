@@ -6,13 +6,13 @@ int main() {
     cin >> stadium;
     int timeOfVWin = 0;
     int timeOfVWinMax = 0;
-    for (int i = 0; i < stadium.length(); i++){
-        if (stadium[i] == 'V'){
+    for (int i = 0; i < stadium.length(); i++) {
+        if (stadium[i] == 'V') {
             timeOfVWin++;
-        } else{
+        } else {
             timeOfVWin = 0;
         }
-        if (timeOfVWin > timeOfVWinMax){
+        if (timeOfVWin > timeOfVWinMax) {
             timeOfVWinMax = timeOfVWin;
         }
     }

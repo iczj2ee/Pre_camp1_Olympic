@@ -10,10 +10,9 @@ int main() {
         if (number == 0) {
             cout << "0" << endl;
             continue;
-        }
-        else {
+        } else {
             string binary_number = "";
-            while (number > 0){
+            while (number > 0) {
                 binary_number = to_string(number % 2) + binary_number;
                 number /= 2;
             }

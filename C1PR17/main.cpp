@@ -13,7 +13,7 @@ int main() {
         if (i % 2 == 0) {
             continue;
         }
-        
+
         for (long long j = 1; j * j <= i; j++) {
             if (i % j == 0) {
                 count++;
@@ -21,13 +21,12 @@ int main() {
             if (count > 1) {
                 break;
             }
-
         }
         if (count <= 1) {
             cout << i << " ";
         }
     }
     cout << endl;
-    
+
     return 0;
 }

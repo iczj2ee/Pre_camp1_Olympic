@@ -11,7 +11,7 @@ int main() {
         contents += contentBuffer;
     }
     for (int i = 1; i <= contents.length(); ++i) {
-        if (i % Denominator == 0){
+        if (i % Denominator == 0) {
             cout << contents[i - 1];
         }
     }
